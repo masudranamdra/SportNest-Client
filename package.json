@@ -1,0 +1,31 @@
+{
+  "name": "sportnest-client",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@better-auth/mongo-adapter": "^1.6.11",
+    "@heroui/react": "^2.2.0",
+    "better-auth": "^1.6.11",
+    "clsx": "^2.1.0",
+    "framer-motion": "^11.0.8",
+    "lucide-react": "^0.359.0",
+    "mongodb": "^7.2.0",
+    "next": "^14.1.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.51.1",
+    "react-hot-toast": "^2.4.1",
+    "tailwind-merge": "^2.2.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.1"
+  }
+}
