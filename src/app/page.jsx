@@ -36,7 +36,7 @@ const sportsData = [
     name: "Football",
     type: "football",
     icon: "⚽",
-    image: "https://i.ibb.co.com/LDwV8CLV/atelierbyvineeth-p-Q2j-Av7-Bi8k.jpg",
+    image: "https://i.ibb.co.com/r1pSKLh/atelierbyvineeth-p-Q2j-Av7-Bi8k.jpg",
     playgrounds: "05+",
     open: "06:00 AM",
     close: "11:00 PM",
@@ -51,7 +51,7 @@ const sportsData = [
     name: "Cricket",
     type: "cricket",
     icon: "🏏",
-    image: "https://i.ibb.co.com/tpsgJqw1/cfphotosin-photography-4hbgc-Qv9-As-unsplash.jpg",
+    image: "https://i.ibb.co.com/x8BVTzqv/cfphotosin-photography-4hbgc-Qv9-As-unsplash.jpg",
     playgrounds: "03+",
     open: "07:00 AM",
     close: "10:00 PM",
@@ -81,7 +81,7 @@ const sportsData = [
     name: "Tennis",
     type: "tennis",
     icon: "🎾",
-    image: "https://i.ibb.co.com/JwSXKmYC/valentin-balan-k0a-VMMZwqt-U-unsplash.jpg",
+    image: "https://i.ibb.co.com/ZRHBr8Bm/valentin-balan-k0a-VMMZwqt-U-unsplash.jpg",
     playgrounds: "04+",
     open: "06:00 AM",
     close: "09:00 PM",
@@ -166,7 +166,7 @@ export default function HomePage() {
     <div className="flex-grow bg-slate-50 dark:bg-[#070b19] transition-colors duration-250">
 
       {/* 1. HERO SEARCH SECTION */}
-      <section className="relative pt-32 pb-24 sm:pt-40 sm:pb-32 md:h-[750px] bg-center bg-cover bg-no-repeat" style={{ backgroundImage: "url('https://i.ibb.co.com/fVBF30bW/Chat-GPT-Image-May-19-2026-07-59-36-AM.png')" }}>
+      <section className="relative pt-32 pb-24 sm:pt-40 sm:pb-32 md:h-[750px] bg-center bg-cover bg-no-repeat" style={{ backgroundImage: "url('https://i.ibb.co.com/wHhPLV0/cover.jpg')" }}>
         <div className="absolute inset-0 bg-black/20 backdrop-blur-[1px]"></div>
 
 
