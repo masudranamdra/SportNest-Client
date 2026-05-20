@@ -1,32 +1,49 @@
 'use client';
 
-import React, { createContext, useContext, useEffect, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 const ThemeContext = createContext();
 
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState('light');
-  const [mounted, setMounted] = useState(false);
 
-  // Load theme preference on mount
+  // Load saved theme
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme');
+
     if (savedTheme) {
       setTheme(savedTheme);
-      document.documentElement.classList.toggle('dark', savedTheme === 'dark');
+
+      document.documentElement.classList.toggle(
+        'dark',
+        savedTheme === 'dark'
+      );
     } else {
-      // Default to dark mode for the premium sports-tech startup look!
-      setTheme('dark');
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
+      // Default Light Theme
+      setTheme('light');
+
+      document.documentElement.classList.remove('dark');
+
+      localStorage.setItem('theme', 'light');
     }
   }, []);
 
   const toggleTheme = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
+
     setTheme(newTheme);
+
     localStorage.setItem('theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+
+    document.documentElement.classList.toggle(
+      'dark',
+      newTheme === 'dark'
+    );
   };
 
   return (
@@ -38,8 +55,12 @@ export const ThemeProvider = ({ children }) => {
 
 export const useTheme = () => {
   const context = useContext(ThemeContext);
+
   if (!context) {
-    throw new Error('useTheme must be used within a ThemeProvider');
+    throw new Error(
+      'useTheme must be used within a ThemeProvider'
+    );
   }
+
   return context;
 };
