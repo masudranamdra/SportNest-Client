@@ -74,10 +74,10 @@ const Modal = ({
           </button>
           <button
             onClick={onConfirm}
-            className={`px-5 py-2.5 rounded-xl text-sm font-bold text-white shadow-md active:scale-95 transition-all ${
+            className={`px-5 py-2.5 rounded-xl text-sm font-bold text-white shadow-sm active:scale-95 transition-all ${
               isDanger 
-                ? 'bg-red-500 hover:bg-red-650 shadow-red-500/10' 
-                : 'bg-primary-500 hover:bg-primary-600 shadow-primary-500/10'
+                ? 'bg-red-500 hover:bg-red-650' 
+                : 'bg-blue-600 hover:bg-blue-700'
             }`}
           >
             {confirmText}

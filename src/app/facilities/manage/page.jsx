@@ -9,6 +9,7 @@ import Spinner from '@/components/Spinner';
 import Modal from '@/components/Modal';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
+import { motion, AnimatePresence } from 'framer-motion';
 import { 
   PlusCircle, 
   Edit2, 
@@ -172,124 +173,172 @@ export default function ManageMyFacilitiesPage() {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+  };
+
   return (
     <ProtectedRoute>
-      <div className="flex-grow bg-slate-50 dark:bg-slate-950 py-12 px-4 sm:px-6 lg:px-8 transition-colors duration-200">
-        <div className="max-w-7xl mx-auto space-y-8">
+      <div className="flex-grow bg-slate-55 dark:bg-[#070b19] py-16 px-4 sm:px-6 lg:px-8 transition-colors duration-250 relative min-h-[90vh]">
+        
+        {/* Ambient background glows (only dark mode) */}
+        <div className="hidden dark:block absolute top-0 right-1/4 w-[350px] h-[350px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+
+        <div className="max-w-7xl mx-auto space-y-10 relative z-10">
           
           {/* Header section */}
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-4 border-b border-slate-200/50 dark:border-slate-800/80 pb-6">
-            <div className="space-y-2">
-              <span className="text-primary-500 font-extrabold text-sm uppercase tracking-wider">Host Dashboard</span>
-              <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white">Manage My Facilities</h1>
-              <p className="text-slate-550 dark:text-slate-400 text-sm font-medium">
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-end gap-6 border-b border-slate-200 dark:border-slate-800 pb-8">
+            <div className="space-y-3">
+              <span className="text-blue-600 dark:text-sky-400 font-extrabold text-xs uppercase tracking-widest block">Host Dashboard</span>
+              <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Manage My Facilities</h1>
+              <p className="text-slate-655 dark:text-slate-400 text-xs sm:text-sm font-semibold max-w-xl">
                 Add fields, adjust rates per hour, edit operational details, or cancel your active listings.
               </p>
             </div>
             <Link
               href="/facilities/add"
-              className="bg-primary-500 hover:bg-primary-600 text-white font-bold px-5 py-2.5 rounded-2xl text-sm shadow-md shadow-primary-500/10 hover:shadow-primary-500/20 active:scale-95 transition-all flex items-center"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-6 py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-sm active:scale-95 transition-all flex items-center"
             >
-              <PlusCircle className="h-4.5 w-4.5 mr-2" />
+              <PlusCircle className="h-4 w-4 mr-2" />
               Add Facility
             </Link>
           </div>
 
           {/* Core content */}
-          {loading ? (
-            <div className="py-24 flex justify-center">
-              <Spinner size="large" />
-            </div>
-          ) : myFacilities.length === 0 ? (
-            <div className="text-center py-20 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/40 rounded-3xl p-8 max-w-xl mx-auto shadow-sm space-y-4">
-              <div className="p-4 bg-slate-100 dark:bg-slate-955 text-slate-400 dark:text-slate-500 rounded-full w-fit mx-auto">
-                <Sliders className="h-10 w-10 animate-spin" />
-              </div>
-              <h3 className="text-xl font-bold text-slate-900 dark:text-white">No facilities listed</h3>
-              <p className="text-sm text-slate-550 dark:text-slate-400 leading-relaxed max-w-sm mx-auto">
-                You haven't listed any sports facilities on SportNest yet. Register your fields or turfs and start hosting match bookings!
-              </p>
-              <Link
-                href="/facilities/add"
-                className="inline-flex bg-primary-500 hover:bg-primary-600 text-white font-bold px-6 py-3 rounded-2xl text-sm shadow-md transition-all active:scale-95"
+          <AnimatePresence mode="wait">
+            {loading ? (
+              <motion.div 
+                key="loading" 
+                initial={{ opacity: 0 }} 
+                animate={{ opacity: 1 }} 
+                exit={{ opacity: 0 }} 
+                className="py-24 flex justify-center"
               >
-                List Your First Turf
-              </Link>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {myFacilities.map((facility) => (
-                <div 
-                  key={facility._id} 
-                  className="flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200/60 dark:border-slate-800/80 rounded-3xl overflow-hidden shadow-sm hover:shadow-lg transition-all"
-                >
-                  
-                  {/* Aspect Ratio Cover Photo */}
-                  <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100 dark:bg-slate-950">
-                    <img
-                      src={facility.image}
-                      alt={facility.name}
-                      className="h-full w-full object-cover"
-                      onError={(e) => {
-                        e.target.src = 'https://images.unsplash.com/photo-1541252260730-0412e8e2108e?auto=format&fit=crop&q=80&w=600';
-                      }}
-                    />
-                    <div className="absolute top-4 left-4 z-10">
-                      <span className="px-3.5 py-1 bg-primary-500 text-white text-xs font-bold uppercase tracking-wider rounded-full border border-primary-400/20 backdrop-blur-md">
-                        {facility.facility_type}
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Info details */}
-                  <div className="p-6 flex flex-col flex-grow space-y-4">
-                    
-                    <div className="space-y-1">
-                      <h3 className="text-lg font-bold text-slate-850 dark:text-white truncate">
-                        {facility.name}
-                      </h3>
-                      <div className="flex items-center text-slate-450 dark:text-slate-400 text-xs">
-                        <MapPin className="h-3.5 w-3.5 mr-1" />
-                        <span className="truncate">{facility.location}</span>
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-2 gap-3 text-sm p-3 bg-slate-50 dark:bg-slate-950/40 rounded-2xl border border-slate-200/35 dark:border-slate-850">
-                      <div>
-                        <span className="text-[10px] text-slate-450 uppercase block font-bold">Price rate</span>
-                        <span className="font-extrabold text-slate-800 dark:text-white">${facility.price_per_hour}/hr</span>
-                      </div>
-                      <div>
-                        <span className="text-[10px] text-slate-450 uppercase block font-bold">Players Limit</span>
-                        <span className="font-extrabold text-slate-800 dark:text-white">{facility.capacity} Max</span>
-                      </div>
-                    </div>
-
-                    {/* Actions button row */}
-                    <div className="flex gap-3 pt-2 mt-auto border-t border-slate-100 dark:border-slate-800/60">
-                      <button
-                        onClick={() => handleEditClick(facility)}
-                        className="flex-grow flex items-center justify-center bg-slate-150 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 py-2.5 rounded-xl text-xs font-bold transition-all border border-slate-200/20 active:scale-95"
-                      >
-                        <Edit2 className="h-3.5 w-3.5 mr-1 text-slate-500" />
-                        Edit Details
-                      </button>
-
-                      <button
-                        onClick={() => handleDeleteClick(facility._id)}
-                        className="flex-grow flex items-center justify-center bg-red-50 hover:bg-red-100 dark:bg-red-950/10 dark:hover:bg-red-950/20 text-red-500 py-2.5 rounded-xl text-xs font-bold transition-all border border-red-500/10 active:scale-95"
-                      >
-                        <Trash2 className="h-3.5 w-3.5 mr-1 text-red-400" />
-                        Delete Field
-                      </button>
-                    </div>
-
-                  </div>
-
+                <Spinner size="large" />
+              </motion.div>
+            ) : myFacilities.length === 0 ? (
+              <motion.div 
+                key="empty"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                className="text-center py-20 bg-white dark:bg-slate-900/20 border border-slate-200 dark:border-slate-900 rounded-3xl p-8 max-w-xl mx-auto shadow-sm space-y-5"
+              >
+                <div className="p-4 bg-slate-50 dark:bg-slate-900/60 text-slate-455 dark:text-slate-500 rounded-2xl w-fit mx-auto border border-slate-200 dark:border-slate-800">
+                  <Sliders className="h-8 w-8 text-slate-400 dark:text-slate-500" />
                 </div>
-              ))}
-            </div>
-          )}
+                <div className="space-y-2">
+                  <h3 className="text-lg font-bold text-slate-800 dark:text-slate-350">No facilities listed</h3>
+                  <p className="text-xs text-slate-655 dark:text-slate-500 leading-relaxed max-w-xs mx-auto font-semibold">
+                    You haven't listed any sports facilities on SportNest yet. Register your fields or turfs and start hosting bookings!
+                  </p>
+                </div>
+                <Link
+                  href="/facilities/add"
+                  className="inline-flex bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-6 py-3.5 rounded-2xl text-xs uppercase tracking-wider shadow-sm transition-all active:scale-95"
+                >
+                  List Your First Turf
+                </Link>
+              </motion.div>
+            ) : (
+              <motion.div 
+                key="grid"
+                variants={containerVariants}
+                initial="hidden"
+                animate="show"
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              >
+                {myFacilities.map((facility) => (
+                  <motion.div 
+                    key={facility._id} 
+                    variants={itemVariants}
+                    className="flex flex-col h-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 rounded-3xl overflow-hidden shadow-sm hover:border-blue-500/25 dark:hover:border-blue-500/25 hover:shadow-md dark:hover:shadow-blue-500/5 transition-all duration-300"
+                  >
+                    
+                    {/* Aspect Ratio Cover Photo */}
+                    <div className="relative aspect-[16/9] w-full overflow-hidden bg-slate-100 dark:bg-slate-950">
+                      <img
+                        src={facility.image}
+                        alt={facility.name}
+                        className="h-full w-full object-cover"
+                        onError={(e) => {
+                          e.target.src = 'https://images.unsplash.com/photo-1541252260730-0412e8e2108e?auto=format&fit=crop&q=80&w=600';
+                        }}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-60 pointer-events-none" />
+                      <div className="absolute top-4 left-4 z-10">
+                        <span className="px-3.5 py-1.5 bg-gradient-to-r from-blue-650 to-[#10b981] text-white text-[10px] font-extrabold uppercase tracking-widest rounded-xl shadow-md border border-blue-500/10">
+                          {facility.facility_type}
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Info details */}
+                    <div className="p-6 flex flex-col flex-grow space-y-4">
+                      
+                      <div className="space-y-1.5">
+                        <h3 className="text-base font-bold text-slate-900 dark:text-slate-100 truncate">
+                          {facility.name}
+                        </h3>
+                        <div className="flex items-center text-slate-500 dark:text-slate-400 text-xs font-semibold">
+                          <MapPin className="h-4 w-4 mr-2 text-slate-400 dark:text-slate-500 flex-shrink-0" />
+                          <span className="truncate">{facility.location}</span>
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-2 gap-3 p-3 bg-slate-50 dark:bg-slate-955 border border-slate-100 dark:border-slate-900 rounded-2xl">
+                        <div className="space-y-0.5">
+                          <span className="text-[9px] text-slate-500 dark:text-slate-550 uppercase block font-bold tracking-wider">Price rate</span>
+                          <span className="text-sm font-bold text-slate-805 dark:text-slate-200 flex items-center">
+                            <span className="text-xs text-blue-600 dark:text-sky-400 mr-0.5">$</span>
+                            {facility.price_per_hour}
+                            <span className="text-[10px] font-semibold text-slate-500 ml-0.5">/hr</span>
+                          </span>
+                        </div>
+                        <div className="space-y-0.5">
+                          <span className="text-[9px] text-slate-500 dark:text-slate-550 uppercase block font-bold tracking-wider">Players Limit</span>
+                          <span className="text-sm font-bold text-slate-805 dark:text-slate-200 flex items-center">
+                            <Users className="h-4 w-4 mr-1.5 text-slate-400 dark:text-slate-500" />
+                            {facility.capacity} Max
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Actions button row */}
+                      <div className="flex gap-3 pt-2 mt-auto border-t border-slate-100 dark:border-slate-800/60 pt-4">
+                        <button
+                          onClick={() => handleEditClick(facility)}
+                          className="flex-grow flex items-center justify-center bg-slate-100 hover:bg-slate-200 text-slate-700 dark:bg-slate-800 dark:hover:bg-slate-750 dark:text-slate-200 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all border border-slate-200 dark:border-slate-700/30 active:scale-95 shadow-sm"
+                        >
+                          <Edit2 className="h-3.5 w-3.5 mr-2 text-slate-500 dark:text-slate-400" />
+                          Edit Details
+                        </button>
+
+                        <button
+                          onClick={() => handleDeleteClick(facility._id)}
+                          className="flex-grow flex items-center justify-center bg-red-50/80 dark:bg-red-500/10 hover:bg-red-100 dark:hover:bg-red-500/20 text-red-650 dark:text-red-400 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all border border-red-500/20 active:scale-95"
+                        >
+                          <Trash2 className="h-3.5 w-3.5 mr-2 text-red-550 dark:text-red-400/80" />
+                          Delete Field
+                        </button>
+                      </div>
+
+                    </div>
+
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
 
           {/* Delete double confirmation modal */}
           <Modal
@@ -304,156 +353,164 @@ export default function ManageMyFacilitiesPage() {
           />
 
           {/* Dynamic Edit overlay Modal */}
-          {isEditOpen && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/65 backdrop-blur-sm animate-fade-in">
-              <div className="fixed inset-0" onClick={() => setIsEditOpen(false)} />
-              
-              <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-2xl z-10 max-h-[90vh] flex flex-col">
+          <AnimatePresence>
+            {isEditOpen && (
+              <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 dark:bg-slate-955/80 backdrop-blur-md animate-fade-in">
+                <div className="fixed inset-0" onClick={() => setIsEditOpen(false)} />
                 
-                {/* Header title */}
-                <div className="px-6 py-4 border-b border-slate-100 dark:border-slate-800/80 flex justify-between items-center bg-slate-50 dark:bg-slate-950/25">
-                  <div>
-                    <h3 className="text-lg font-extrabold text-slate-900 dark:text-white">Edit Facility Specifications</h3>
-                    <p className="text-xs text-slate-450 dark:text-slate-400">Update listing pricing, capacities, and scheduling slots.</p>
-                  </div>
-                  <button onClick={() => setIsEditOpen(false)} className="p-1 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-800 text-slate-450 transition-all">
-                    <X className="h-5 w-5" />
-                  </button>
-                </div>
-
-                {/* Form scroll section */}
-                <form onSubmit={handleSubmit(onEditSubmit)} className="flex-grow overflow-y-auto p-6 space-y-5">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.95 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 25 }}
+                  className="relative w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-3xl overflow-hidden shadow-2xl z-10 max-h-[90vh] flex flex-col"
+                >
                   
-                  {/* Name and Type */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Facility Name</label>
-                      <input
-                        type="text"
-                        {...register('name', { required: 'Name is required' })}
-                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all text-sm font-medium"
-                      />
-                      {errors.name && <span className="text-xs text-red-500 font-bold block mt-0.5">{errors.name.message}</span>}
+                  {/* Header title */}
+                  <div className="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex justify-between items-center bg-slate-50/50 dark:bg-slate-950/40">
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 dark:text-white tracking-wide">Edit Facility Specifications</h3>
+                      <p className="text-xs text-slate-500 mt-0.5">Update listing pricing, capacities, and scheduling slots.</p>
                     </div>
-
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Sport Category</label>
-                      <select
-                        {...register('facility_type', { required: 'Type is required' })}
-                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all text-sm font-medium cursor-pointer"
-                      >
-                        {sportTypes.map((type) => (
-                          <option key={type.value} value={type.value}>{type.label}</option>
-                        ))}
-                      </select>
-                    </div>
+                    <button onClick={() => setIsEditOpen(false)} className="p-2 rounded-xl bg-slate-100 dark:bg-slate-950 hover:bg-slate-200 dark:hover:bg-slate-850 text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-all">
+                      <X className="h-5 w-5" />
+                    </button>
                   </div>
 
-                  {/* Location and Photo Cover URL */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Location Address</label>
-                      <input
-                        type="text"
-                        {...register('location', { required: 'Location is required' })}
-                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all text-sm font-medium"
-                      />
-                      {errors.location && <span className="text-xs text-red-500 font-bold block mt-0.5">{errors.location.message}</span>}
+                  {/* Form scroll section */}
+                  <form onSubmit={handleSubmit(onEditSubmit)} className="flex-grow overflow-y-auto p-6 space-y-5">
+                    
+                    {/* Name and Type */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">Facility Name</label>
+                        <input
+                          type="text"
+                          {...register('name', { required: 'Name is required' })}
+                          className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
+                        />
+                        {errors.name && <span className="text-[10px] text-red-500 font-bold block mt-1">{errors.name.message}</span>}
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">Sport Category</label>
+                        <select
+                          {...register('facility_type', { required: 'Type is required' })}
+                          className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider cursor-pointer"
+                        >
+                          {sportTypes.map((type) => (
+                            <option key={type.value} value={type.value} className="bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200">{type.label}</option>
+                          ))}
+                        </select>
+                      </div>
                     </div>
 
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Photo Cover URL</label>
-                      <input
-                        type="url"
-                        {...register('image', { required: 'Image is required' })}
-                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all text-sm font-medium"
-                      />
-                      {errors.image && <span className="text-xs text-red-500 font-bold block mt-0.5">{errors.image.message}</span>}
+                    {/* Location and Photo Cover URL */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">Location Address</label>
+                        <input
+                          type="text"
+                          {...register('location', { required: 'Location is required' })}
+                          className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
+                        />
+                        {errors.location && <span className="text-[10px] text-red-500 font-bold block mt-1">{errors.location.message}</span>}
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">Photo Cover URL</label>
+                        <input
+                          type="url"
+                          {...register('image', { required: 'Image is required' })}
+                          className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
+                        />
+                        {errors.image && <span className="text-[10px] text-red-500 font-bold block mt-1">{errors.image.message}</span>}
+                      </div>
                     </div>
+
+                    {/* Price rate and Player limit */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">Price per Hour ($)</label>
+                        <input
+                          type="number"
+                          min="1"
+                          {...register('price_per_hour', { required: 'Rate is required', min: 1 })}
+                          className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-bold text-xs uppercase tracking-wider"
+                        />
+                      </div>
+
+                      <div className="space-y-1.5">
+                        <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">Player Capacity limit</label>
+                        <input
+                          type="number"
+                          min="1"
+                          {...register('capacity', { required: 'Capacity is required', min: 1 })}
+                          className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-955 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-bold text-xs uppercase tracking-wider"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Available scheduling slots selection checkboxes */}
+                    <div className="space-y-3">
+                      <label className="text-[10px] font-bold text-slate-550 dark:text-slate-400 uppercase tracking-widest block">Available Slots</label>
+                      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
+                        {presetSlots.map((slot) => {
+                          const isChecked = editSlots.includes(slot);
+                          return (
+                            <button
+                              key={slot}
+                              type="button"
+                              onClick={() => handleEditSlotToggle(slot)}
+                              className={`px-3 py-2.5 rounded-xl text-xs font-bold border transition-all active:scale-95 duration-200 ${
+                                isChecked
+                                  ? 'bg-blue-500/10 border-blue-400/30 text-blue-600 dark:text-sky-400 shadow-sm'
+                                  : 'bg-slate-50 hover:bg-slate-100 dark:bg-slate-950 dark:hover:bg-slate-850 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-800 hover:border-slate-300 dark:hover:border-slate-700'
+                              }`}
+                            >
+                              {slot}
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    {/* Description textarea */}
+                    <div className="space-y-1.5">
+                      <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">Description Details</label>
+                      <textarea
+                        rows="3"
+                        {...register('description', { required: 'Description is required' })}
+                        className="w-full px-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-805 dark:text-slate-200 border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider resize-none"
+                      />
+                      {errors.description && <span className="text-[10px] text-red-500 font-bold block mt-1">{errors.description.message}</span>}
+                    </div>
+
+                  </form>
+
+                  {/* Footer Save changes row */}
+                  <div className="px-6 py-4 border-t border-slate-200 dark:border-slate-800 flex justify-end space-x-3.5 bg-slate-50/50 dark:bg-slate-950/40">
+                    <button
+                      type="button"
+                      onClick={() => setIsEditOpen(false)}
+                      className="px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-750 text-slate-700 dark:text-slate-300 transition-all active:scale-95 shadow-sm"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      type="button"
+                      onClick={handleSubmit(onEditSubmit)}
+                      disabled={updating}
+                      className="px-5 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-white bg-blue-600 hover:bg-blue-700 shadow-sm active:scale-95 transition-all flex items-center"
+                    >
+                      {updating ? <Spinner size="small" /> : 'Save Specifications'}
+                    </button>
                   </div>
 
-                  {/* Price rate and Player limit */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Price per Hour ($)</label>
-                      <input
-                        type="number"
-                        min="1"
-                        {...register('price_per_hour', { required: 'Rate is required', min: 1 })}
-                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all text-sm font-semibold"
-                      />
-                    </div>
-
-                    <div className="space-y-1">
-                      <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Player Capacity limit</label>
-                      <input
-                        type="number"
-                        min="1"
-                        {...register('capacity', { required: 'Capacity is required', min: 1 })}
-                        className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all text-sm font-semibold"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Available scheduling slots selection checkboxes */}
-                  <div className="space-y-2">
-                    <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Available Slots</label>
-                    <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                      {presetSlots.map((slot) => {
-                        const isChecked = editSlots.includes(slot);
-                        return (
-                          <button
-                            key={slot}
-                            type="button"
-                            onClick={() => handleEditSlotToggle(slot)}
-                            className={`px-3 py-2 rounded-xl text-xs font-bold border transition-all ${
-                              isChecked
-                                ? 'bg-primary-500/10 border-primary-500 text-primary-650 dark:text-primary-400 font-extrabold'
-                                : 'bg-slate-50 dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-850 text-slate-600 dark:text-slate-450 border-slate-200 dark:border-slate-800/80'
-                            }`}
-                          >
-                            {slot}
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  {/* Description textarea */}
-                  <div className="space-y-1">
-                    <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Description Details</label>
-                    <textarea
-                      rows="3"
-                      {...register('description', { required: 'Description is required' })}
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all text-sm font-medium resize-none"
-                    />
-                    {errors.description && <span className="text-xs text-red-500 font-bold block mt-0.5">{errors.description.message}</span>}
-                  </div>
-
-                </form>
-
-                {/* Footer Save changes row */}
-                <div className="px-6 py-4 border-t border-slate-100 dark:border-slate-800/80 flex justify-end space-x-3 bg-slate-50 dark:bg-slate-950/25">
-                  <button
-                    type="button"
-                    onClick={() => setIsEditOpen(false)}
-                    className="px-5 py-2.5 rounded-xl text-xs font-bold bg-slate-200 dark:bg-slate-850 text-slate-700 dark:text-slate-200 transition-all"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="button"
-                    onClick={handleSubmit(onEditSubmit)}
-                    disabled={updating}
-                    className="px-5 py-2.5 rounded-xl text-xs font-bold text-white bg-primary-500 hover:bg-primary-600 shadow-md active:scale-95 transition-all flex items-center"
-                  >
-                    {updating ? <Spinner size="small" /> : 'Save Specifications'}
-                  </button>
-                </div>
-
+                </motion.div>
               </div>
-            </div>
-          )}
+            )}
+          </AnimatePresence>
 
         </div>
       </div>

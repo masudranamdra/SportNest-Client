@@ -12,7 +12,7 @@ const Spinner = ({ size = 'medium', className = '' }) => {
   return (
     <div className={`flex justify-center items-center ${className}`}>
       <div 
-        className={`${sizeClasses[size]} animate-spin rounded-full border-primary-500 border-t-transparent`}
+        className={`${sizeClasses[size]} animate-spin rounded-full border-blue-600 dark:border-sky-400 border-t-transparent`}
         role="status"
         aria-label="loading"
       />

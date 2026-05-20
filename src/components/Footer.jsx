@@ -8,37 +8,62 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-white dark:bg-slate-950 border-t border-slate-200/60 dark:border-slate-900 transition-colors duration-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="relative bg-white dark:bg-[#070b19] border-t border-slate-200 dark:border-slate-850/80 transition-colors duration-200 overflow-hidden">
+      {/* Background soft glow blobs (Only in dark mode for premium feel) */}
+      <div className="hidden dark:block absolute bottom-0 left-0 w-[300px] h-[300px] bg-blue-500/5 blur-[100px] rounded-full pointer-events-none" />
+      <div className="hidden dark:block absolute bottom-12 right-0 w-[200px] h-[200px] bg-emerald-500/5 blur-[80px] rounded-full pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
 
           {/* Column 1 - Brand & Desc */}
-          <div className="md:col-span-1 space-y-4">
-            <Link href="/" className="flex items-center space-x-2 text-primary-500 font-extrabold text-xl">
-              <div className="p-1 bg-primary-500 text-white rounded-lg shadow-sm">
-                <Dribbble className="h-5 w-5" />
+          <div className="md:col-span-1 space-y-5">
+            <Link href="/" className="flex items-center space-x-2 font-extrabold text-xl group">
+              <div className="p-2 bg-gradient-to-tr from-blue-600 to-sky-500 text-white rounded-xl shadow-md shadow-blue-500/20 group-hover:scale-105 transition-transform duration-300">
+                <img className="h-7 w-7" src="https://i.ibb.co.com/fzF0nrZ7/logo1.png" alt="" />
               </div>
-              <span className="bg-gradient-to-r from-primary-600 to-emerald-500 dark:from-primary-400 dark:to-emerald-400 bg-clip-text text-transparent">
-                SportNest
+              <span className="text-slate-900 dark:text-white font-bold">
+                Sport<span className="text-blue-600 dark:text-sky-405">Nest</span>
               </span>
             </Link>
-            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed">
-              SportNest is the ultimate sports facility booking platform. Discover fields, reserve slots, and schedule playtimes with your crew in seconds.
+            <p className="text-xs text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
+              SportNest is the ultimate sports facility booking platform. Discover premium fields, reserve slots, and schedule playtimes with your crew in seconds.
             </p>
             {/* Social Links */}
-            <div className="flex space-x-4 pt-2">
-              <a href="https://www.facebook.com/masudranamdra1/" className="text-slate-400 hover:text-primary-500 transition-all" aria-label="Facebook">
-                <Facebook className="h-5 w-5" />
+            <div className="flex space-x-3 pt-2">
+              <a 
+                href="https://www.facebook.com/masudranamdra1/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/40 text-slate-500 dark:text-slate-450 hover:text-blue-600 dark:hover:text-sky-400 hover:border-blue-500/25 dark:hover:border-sky-500/20 transition-all duration-300" 
+                aria-label="Facebook"
+              >
+                <Facebook className="h-4.5 w-4.5" />
               </a>
-              <a href="https://www.linkedin.com/in/masudranamdra/" className="text-slate-400 hover:text-primary-500 transition-all" aria-label="Linkedin">
-                <Linkedin className="h-5 w-5" />
+              <a 
+                href="https://www.linkedin.com/in/masudranamdra/" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/40 text-slate-500 dark:text-slate-450 hover:text-blue-600 dark:hover:text-sky-400 hover:border-blue-500/25 dark:hover:border-sky-500/20 transition-all duration-300" 
+                aria-label="Linkedin"
+              >
+                <Linkedin className="h-4.5 w-4.5" />
               </a>
-              <a href="https://github.com/masudranamdra" className="text-slate-400 hover:text-primary-500 transition-all" aria-label="Github">
-                <Github className="h-5 w-5" />
+              <a 
+                href="https://github.com/masudranamdra" 
+                target="_blank"
+                rel="noopener noreferrer"
+                className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/40 text-slate-500 dark:text-slate-450 hover:text-blue-600 dark:hover:text-sky-400 hover:border-blue-500/25 dark:hover:border-sky-500/20 transition-all duration-300" 
+                aria-label="Github"
+              >
+                <Github className="h-4.5 w-4.5" />
               </a>
-              {/* Premium X Logo (replacing bird) */}
-              <a href="#" className="text-slate-400 hover:text-primary-500 transition-all" aria-label="X (formerly Twitter)">
-                <svg className="h-4 w-4 mt-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <a 
+                href="#" 
+                className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/40 text-slate-500 dark:text-slate-450 hover:text-blue-600 dark:hover:text-sky-400 hover:border-blue-500/25 dark:hover:border-sky-500/20 transition-all duration-300" 
+                aria-label="X (formerly Twitter)"
+              >
+                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
                 </svg>
               </a>
@@ -46,21 +71,21 @@ const Footer = () => {
           </div>
 
           {/* Column 2 - Quick Links */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">Quick Links</h3>
-            <ul className="space-y-2 text-sm">
+          <div className="space-y-5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-350">Quick Links</h3>
+            <ul className="space-y-2.5 text-xs font-semibold">
               <li>
-                <Link href="/" className="text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-all">
+                <Link href="/" className="text-slate-650 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/facilities" className="text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-all">
+                <Link href="/facilities" className="text-slate-650 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
                   All Facilities
                 </Link>
               </li>
               <li>
-                <Link href="/login" className="text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-all">
+                <Link href="/login" className="text-slate-650 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
                   Login & Register
                 </Link>
               </li>
@@ -68,26 +93,26 @@ const Footer = () => {
           </div>
 
           {/* Column 3 - Popular Sports */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">Sports Fields</h3>
-            <ul className="space-y-2 text-sm">
+          <div className="space-y-5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-350">Sports Fields</h3>
+            <ul className="space-y-2.5 text-xs font-semibold">
               <li>
-                <Link href="/facilities?sport_type=football" className="text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-all">
+                <Link href="/facilities?sport_type=football" className="text-slate-650 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
                   Football Arenas
                 </Link>
               </li>
               <li>
-                <Link href="/facilities?sport_type=cricket" className="text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-all">
+                <Link href="/facilities?sport_type=cricket" className="text-slate-650 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
                   Cricket Lanes
                 </Link>
               </li>
               <li>
-                <Link href="/facilities?sport_type=badminton" className="text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-all">
+                <Link href="/facilities?sport_type=badminton" className="text-slate-650 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
                   Badminton Courts
                 </Link>
               </li>
               <li>
-                <Link href="/facilities?sport_type=basketball" className="text-slate-500 dark:text-slate-400 hover:text-primary-500 transition-all">
+                <Link href="/facilities?sport_type=basketball" className="text-slate-650 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
                   Basketball Courts
                 </Link>
               </li>
@@ -95,20 +120,20 @@ const Footer = () => {
           </div>
 
           {/* Column 4 - Contact Info */}
-          <div className="space-y-4">
-            <h3 className="text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white">Contact Us</h3>
-            <ul className="space-y-2.5 text-sm text-slate-500 dark:text-slate-400">
-              <li className="flex items-center space-x-3">
-                <MapPin className="h-4.5 w-4.5 text-primary-500 flex-shrink-0" />
-                <span>Chirirbandar, Dinajpur-5200, Bangladesh</span>
+          <div className="space-y-5">
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-350">Contact Us</h3>
+            <ul className="space-y-3.5 text-xs text-slate-600 dark:text-slate-400 font-semibold">
+              <li className="flex items-start space-x-3">
+                <MapPin className="h-4.5 w-4.5 text-blue-600 dark:text-sky-400 flex-shrink-0 mt-0.5" />
+                <span className="leading-relaxed">Chirirbandar, Dinajpur-5200, Bangladesh</span>
               </li>
               <li className="flex items-center space-x-3">
-                <Phone className="h-4.5 w-4.5 text-primary-500 flex-shrink-0" />
+                <Phone className="h-4.5 w-4.5 text-blue-600 dark:text-sky-400 flex-shrink-0" />
                 <span>+880 18770-80660</span>
               </li>
               <li className="flex items-center space-x-3">
-                <Mail className="h-4.5 w-4.5 text-primary-500 flex-shrink-0" />
-                <span>masud.dev01@gmail.com</span>
+                <Mail className="h-4.5 w-4.5 text-blue-600 dark:text-sky-400 flex-shrink-0" />
+                <span className="truncate">masud.dev01@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -116,22 +141,18 @@ const Footer = () => {
         </div>
 
         {/* Bottom copyright bar */}
-        <div className="mt-12 pt-8 border-t border-slate-200/50 dark:border-slate-900 text-xs text-slate-450 dark:text-slate-500">
-          <div className="flex justify-between items-center sm:px-6 lg:px-8">
-
-
+        <div className="mt-16 pt-8 border-t border-slate-200 dark:border-slate-900 text-xs text-slate-500 dark:text-slate-500 font-semibold">
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p>© {currentYear} SportNest Booking Systems. Built for high performance. All rights reserved.</p>
-
-            <div>
-              <Link href="/terms" className="text-slate-400 hover:text-primary-500 transition-all mx-2">
+            <div className="flex space-x-6">
+              <Link href="/terms" className="hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
                 Terms of Service
               </Link>
-              <span className="text-slate-400">|</span>
-              <Link href="/privacy" className="text-slate-400 hover:text-primary-500 transition-all mx-2">
+              <span className="text-slate-300 dark:text-slate-800">|</span>
+              <Link href="/privacy" className="hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
                 Privacy Policy
               </Link>
             </div>
-
           </div>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { useSearchParams, useRouter } from 'next/navigation';
 import { api } from '@/utils/api';
 import FacilityCard from '@/components/FacilityCard';
 import Spinner from '@/components/Spinner';
+import { motion, AnimatePresence } from 'framer-motion';
 import { Search, SlidersHorizontal, EyeOff, RotateCcw } from 'lucide-react';
 
 const availableSports = [
@@ -21,7 +22,7 @@ export default function AllFacilitiesPage() {
   const searchParams = useSearchParams();
   const router = useRouter();
 
-  // Retrieve initial sport_type parameter from URL (e.g. from homepage category link)
+  // Retrieve initial sport_type parameter from URL
   const initialSport = searchParams.get('sport_type') || '';
 
   const [facilities, setFacilities] = useState([]);
@@ -77,7 +78,6 @@ export default function AllFacilitiesPage() {
   // Toggle/Select Sport Type
   const handleSportSelect = (sport) => {
     setSelectedSport(sport);
-    // Sync to URL query param
     if (sport) {
       router.push(`/facilities?sport_type=${sport}`, { scroll: false });
     } else {
@@ -93,37 +93,58 @@ export default function AllFacilitiesPage() {
     setTriggerFetch(prev => prev + 1);
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.08 }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0, transition: { type: "spring", stiffness: 100, damping: 15 } }
+  };
+
   return (
-    <div className="flex-grow bg-slate-50 dark:bg-slate-950 transition-colors duration-200 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto space-y-8">
+    <div className="flex-grow bg-slate-50 dark:bg-[#070b19] transition-colors duration-250 py-16 px-4 sm:px-6 lg:px-8 relative min-h-[90vh]">
+      
+      {/* Background radial effects (only in dark mode) */}
+      <div className="hidden dark:block absolute top-0 right-1/4 w-[350px] h-[350px] bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto space-y-10 relative z-10">
         
         {/* Page Header */}
-        <div className="text-center space-y-2">
-          <span className="text-primary-500 font-extrabold text-sm uppercase tracking-wider">Explore Arenas</span>
-          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white">Sports Facilities</h1>
-          <p className="text-slate-500 dark:text-slate-400 text-sm sm:text-base max-w-xl mx-auto font-medium">
+        <div className="text-center space-y-3">
+          <span className="text-blue-600 dark:text-sky-400 font-extrabold text-xs uppercase tracking-widest block">Explore Arenas</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight">Sports Facilities</h1>
+          <p className="text-slate-600 dark:text-slate-400 text-xs sm:text-sm max-w-xl mx-auto font-semibold leading-relaxed">
             Search, filter, and instantly reserve premium sports fields and courts around you.
           </p>
         </div>
 
         {/* Filters Controls Panel */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200/50 dark:border-slate-800/40 shadow-sm space-y-6">
+        <motion.div 
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="bg-white dark:bg-slate-900/40 p-6 rounded-3xl border border-slate-200 dark:border-slate-850/60 shadow-sm dark:shadow-xl dark:shadow-black/30 space-y-6 backdrop-blur-md"
+        >
           
           {/* Search form and Reset button */}
           <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row gap-4">
             <div className="relative flex-grow">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400 dark:text-slate-500" />
               <input
                 type="text"
                 placeholder="Search by facility name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all font-medium text-sm"
+                className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
               />
             </div>
             <button
               type="submit"
-              className="bg-primary-500 hover:bg-primary-600 text-white font-bold px-6 py-3 rounded-md shadow-md shadow-primary-500/10 hover:shadow-primary-500/20 active:scale-95 transition-all text-sm flex items-center justify-center"
+              className="bg-blue-600 hover:bg-blue-700 text-white font-extrabold px-8 py-3.5 rounded-2xl shadow-sm active:scale-95 transition-all text-xs uppercase tracking-wider flex items-center justify-center"
             >
               Search
             </button>
@@ -131,7 +152,7 @@ export default function AllFacilitiesPage() {
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-350 px-5 py-3 rounded-xl transition-all text-sm font-semibold flex items-center justify-center"
+                className="border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/50 hover:bg-slate-50 dark:hover:bg-slate-850 text-slate-700 dark:text-slate-300 px-6 py-3.5 rounded-2xl transition-all text-xs font-bold uppercase tracking-wider flex items-center justify-center active:scale-95 shadow-sm"
               >
                 <RotateCcw className="h-4 w-4 mr-2" />
                 Clear Filters
@@ -140,9 +161,9 @@ export default function AllFacilitiesPage() {
           </form>
 
           {/* Horizontal Sport Type Filter Badges */}
-          <div className="space-y-3">
-            <div className="flex items-center text-xs font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500">
-              <SlidersHorizontal className="h-3.5 w-3.5 mr-2 text-slate-400" />
+          <div className="space-y-4 pt-1">
+            <div className="flex items-center text-[10px] font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+              <SlidersHorizontal className="h-3.5 w-3.5 mr-2" />
               <span>Filter by Sport Category</span>
             </div>
             
@@ -153,10 +174,10 @@ export default function AllFacilitiesPage() {
                   <button
                     key={sport.label}
                     onClick={() => handleSportSelect(sport.value)}
-                    className={`px-4 py-2 rounded-md text-xs font-bold border transition-all ${
+                    className={`px-4 py-2 rounded-md text-xs font-bold uppercase tracking-wider border transition-all duration-200 active:scale-95 ${
                       isSelected
-                        ? 'bg-primary-500 border-primary-500 text-white shadow-md shadow-primary-500/15'
-                        : 'bg-slate-50 dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-850 text-slate-650 dark:text-slate-300 border-slate-200 dark:border-slate-800/80'
+                        ? 'bg-blue-500/10 border-blue-400/30 text-blue-600 dark:text-sky-400 shadow-sm'
+                        : 'bg-slate-50 dark:bg-slate-950/60 hover:bg-slate-100 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-900 hover:border-slate-300 dark:hover:border-slate-800'
                     }`}
                   >
                     {sport.label}
@@ -166,36 +187,60 @@ export default function AllFacilitiesPage() {
             </div>
           </div>
 
-        </div>
+        </motion.div>
 
         {/* Facility Grid Display */}
-        {loading ? (
-          <div className="py-24 flex justify-center">
-            <Spinner size="large" />
-          </div>
-        ) : facilities.length === 0 ? (
-          <div className="text-center py-20 bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-slate-800/40 rounded-3xl p-8 max-w-xl mx-auto shadow-sm space-y-4">
-            <div className="p-4 bg-slate-100 dark:bg-slate-955 text-slate-400 dark:text-slate-500 rounded-full w-fit mx-auto">
-              <EyeOff className="h-10 w-10" />
-            </div>
-            <h3 className="text-xl font-bold text-slate-900 dark:text-white">No facilities found</h3>
-            <p className="text-sm text-slate-550 dark:text-slate-400 leading-relaxed max-w-sm mx-auto">
-              No matching sports fields match your criteria "{searchTerm || selectedSport}". Try adjusting your spelling or filters!
-            </p>
-            <button
-              onClick={handleResetFilters}
-              className="bg-primary-500 hover:bg-primary-600 text-white font-bold px-5 py-2.5 rounded-xl text-sm"
+        <AnimatePresence mode="wait">
+          {loading ? (
+            <motion.div 
+              key="loading"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="py-28 flex justify-center"
             >
-              Reset Filters
-            </button>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-            {facilities.map((facility) => (
-              <FacilityCard key={facility._id} facility={facility} />
-            ))}
-          </div>
-        )}
+              <Spinner size="large" />
+            </motion.div>
+          ) : facilities.length === 0 ? (
+            <motion.div 
+              key="empty"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              className="text-center py-20 bg-white dark:bg-slate-900/20 border border-slate-200 dark:border-slate-900 rounded-3xl p-8 max-w-xl mx-auto shadow-sm space-y-5"
+            >
+              <div className="p-4 bg-slate-50 dark:bg-slate-900/60 text-slate-400 dark:text-slate-500 rounded-2xl w-fit mx-auto border border-slate-200 dark:border-slate-800">
+                <EyeOff className="h-8 w-8" />
+              </div>
+              <div className="space-y-2">
+                <h3 className="text-lg font-bold text-slate-800 dark:text-slate-300">No facilities found</h3>
+                <p className="text-xs text-slate-500 leading-relaxed max-w-xs mx-auto font-medium">
+                  We couldn't find any sports fields that match your criteria.
+                </p>
+              </div>
+              <button
+                onClick={handleResetFilters}
+                className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-6 py-3 rounded-xl text-xs uppercase tracking-wider shadow-sm"
+              >
+                Reset Filters
+              </button>
+            </motion.div>
+          ) : (
+            <motion.div 
+              key="grid"
+              variants={containerVariants}
+              initial="hidden"
+              animate="show"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              {facilities.map((facility) => (
+                <motion.div key={facility._id} variants={cardVariants}>
+                  <FacilityCard facility={facility} />
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
+        </AnimatePresence>
 
       </div>
     </div>

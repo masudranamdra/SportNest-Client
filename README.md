@@ -1,123 +1,430 @@
-# SportNest - Sports Facility Booking Platform (Client)
+# SportNest - Sports Facility Booking Platform
 
-![SportNest](https://via.placeholder.com/1200x600.png?text=SportNest+-+Sports+Facility+Booking+Platform)
+## Project Overview
 
-## 📌 Project Overview
-SportNest is a comprehensive sports facility booking and management platform built with Next.js. It allows users to browse available sports facilities, manage their bookings, and for administrators to manage facilities efficiently. It features a modern, responsive UI with premium aesthetics and dynamic animations.
+SportNest is a modern sports facility booking platform developed using Next.js and React.js. Users can explore sports facilities, view detailed information, and book available playgrounds through a responsive and user-friendly interface.
 
-## 🚀 Features
-- **User Authentication:** Secure login and registration powered by Better Auth.
-- **Facility Discovery:** Browse and search for various sports facilities.
-- **Booking Management:** Seamlessly book facilities and view past/upcoming bookings.
-- **Admin Dashboard:** Manage facilities (add, edit, delete) with administrative privileges.
-- **Responsive Design:** Fully responsive UI built with Tailwind CSS, ensuring a great experience across all devices.
-- **Dark Mode Support:** Integrated dark mode for better user experience in low-light environments.
-- **Dynamic Animations:** Smooth transitions and interactions powered by Framer Motion.
+The main purpose of this project is to practice and demonstrate the technologies and concepts learned during coursework, including authentication, CRUD operations, private routing, API integration, responsive design, and database management.
 
-## 🛠 Tech Stack
-- **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
-- **UI Library:** [React 18](https://reactjs.org/)
-- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-- **Animations:** [Framer Motion](https://www.framer.com/motion/)
-- **Authentication:** [Better Auth](https://better-auth.com/)
-- **Icons:** [Lucide React](https://lucide.dev/)
+---
 
-## 📦 NPM Packages Used
-| Package | Version | Purpose |
-|---------|---------|---------|
-| `next` | `^14.1.4` | Core React framework |
-| `react` / `react-dom` | `^18.2.0` | UI Library |
-| `tailwindcss` | `^3.4.1` | Utility-first CSS framework |
-| `framer-motion` | `^11.0.8` | Animation library for React |
-| `better-auth` | `^1.6.11` | Comprehensive authentication solution |
-| `react-hook-form` | `^7.51.1` | Form state management and validation |
-| `axios` | (varies) | Promise-based HTTP client for API requests |
-| `react-hot-toast` | `^2.4.1` | Elegant notifications |
+## Live Website
 
-## ⚙️ Installation Guide
+Client Live Link:
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/masudranamdra/SportNest-Client.git
-   cd SportNest-Client
-   ```
+https://sportnest-mdra.vercel.app
 
-2. **Install dependencies:**
-   ```bash
-   npm install
-   ```
+---
 
-3. **Configure Environment Variables:**
-   Copy the `.env.example` file to `.env.local` and fill in your variables.
-   ```bash
-   cp .env.example .env.local
-   ```
+## Main Features
 
-4. **Run the development server:**
-   ```bash
-   npm run dev
-   ```
-   Open [http://localhost:3000](http://localhost:3000) in your browser.
+- User Registration and Login System
+- Google Authentication
+- Private and Protected Routes
+- Browse Sports Facilities
+- Facility Details Page
+- Book Sports Facilities
+- Manage User Bookings
+- Add New Facilities
+- Manage Existing Facilities
+- Responsive Design for Mobile, Tablet, and Desktop
+- Dark and Light Theme Support
+- Dynamic Data Rendering
+- Loading and Error Handling Pages
+- Modern User Interface Design
 
-## 🔐 Environment Variables
-Create a `.env.local` file in the root of your project and add the following variables:
+---
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `BETTER_AUTH_URL` | Base URL of your app (e.g., `http://localhost:3000`) | Yes |
-| `BETTER_AUTH_SECRET` | Secret key for JWT/session encryption | Yes |
-| `MONGODB_URI` | MongoDB connection string for auth adapter | Yes |
-| `GOOGLE_CLIENT_ID` | (Optional) Google OAuth Client ID | No |
-| `GOOGLE_CLIENT_SECRET`| (Optional) Google OAuth Client Secret | No |
+## Technologies Used
 
-## 🌐 Live URL
-- **Production:** [https://sportnest-client.vercel.app](https://sportnest-client.vercel.app) *(Replace with actual URL)*
+### Frontend
+- Next.js
+- React.js
+- JavaScript (JSX)
+- Tailwind CSS
 
-## 🚀 Deployment Instructions
-This Next.js application is optimized for deployment on Vercel:
-1. Push your code to a GitHub repository.
-2. Go to [Vercel](https://vercel.com/) and create a new project.
-3. Import your GitHub repository.
-4. Add the required environment variables in the Vercel dashboard.
-5. Click **Deploy**. Vercel will automatically build and deploy your application.
+### Authentication
+- Better Auth
+- Google OAuth
 
-## 📁 Folder Structure
-```text
-SportNest-Client/
-├── src/
-│   ├── app/              # Next.js App Router pages and API routes
-│   │   ├── api/          # Better Auth API endpoints
-│   │   ├── bookings/     # Booking management pages
-│   │   ├── facilities/   # Facility listing and management
-│   │   ├── login/        # Authentication login page
-│   │   └── register/     # Authentication registration page
-│   ├── components/       # Reusable React components (Navbar, Footer, etc.)
-│   ├── context/          # Global React Context providers (AuthContext)
-│   ├── lib/              # Utility libraries and Auth client configuration
-│   ├── styles/           # Global CSS and Tailwind configurations
-│   └── utils/            # Helper functions and API clients
-├── public/               # Static assets (images, icons)
-├── .env.example          # Environment variables template
-├── next.config.mjs       # Next.js configuration
-├── tailwind.config.js    # Tailwind CSS configuration
-└── package.json          # Project dependencies and scripts
+### Database
+- MongoDB
+
+### Deployment
+- Vercel
+
+---
+
+## NPM Packages Used
+
+| Package Name | Purpose |
+|--------------|---------|
+| next | React Framework |
+| react | Frontend Library |
+| react-dom | DOM Rendering |
+| tailwindcss | CSS Utility Framework |
+| framer-motion | Animation Library |
+| better-auth | Authentication System |
+| react-hook-form | Form Management |
+| axios | API Requests |
+| lucide-react | Icons |
+| react-hot-toast | Notification System |
+
+---
+
+## Installation Process
+
+### Clone Repository
+
+```bash
+git clone https://github.com/masudranamdra/SportNest-Client.git
 ```
 
-## 📸 Screenshots
-*(Add high-quality screenshots of the application here to showcase the UI/UX)*
+### Move to Project Folder
 
-## 🤝 Contribution Guide
-Contributions are welcome! If you'd like to improve the project:
-1. Fork the repository.
-2. Create a new branch (`git checkout -b feature/AmazingFeature`).
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`).
-4. Push to the branch (`git push origin feature/AmazingFeature`).
-5. Open a Pull Request.
+```bash
+cd SportNest-Client
+```
 
-## 📄 License
-Distributed under the MIT License. See `LICENSE` for more information.
+### Install Dependencies
 
-## 👨‍💻 Author
-**Masud Rana**
-- GitHub: [@masudranamdra](https://github.com/masudranamdra)
-- Email: [masud.dev01@gmail.com](mailto:masud.dev01@gmail.com)
+```bash
+npm install
+```
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+---
+
+## Environment Variables
+
+Create a `.env.local` file and add the following variables:
+
+```env
+NEXT_PUBLIC_API_URL=
+BETTER_AUTH_URL=
+BETTER_AUTH_SECRET=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+```
+
+---
+
+## Project Structure
+
+```bash
+## Project Structure
+
+```bash
+SportNest-Client/
+│
+├── public/
+│   ├── images/
+│   ├── icons/
+│   └── assets/
+│
+├── src/
+│   │
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── auth/
+│   │   │       └── [...all]/
+│   │   │           └── route.js
+│   │   │
+│   │   ├── bookings/
+│   │   │   └── page.jsx
+│   │   │
+│   │   ├── facilities/
+│   │   │   ├── page.jsx
+│   │   │   ├── add/
+│   │   │   │   └── page.jsx
+│   │   │   ├── manage/
+│   │   │   │   └── page.jsx
+│   │   │   └── [id]/
+│   │   │       └── page.jsx
+│   │   │
+│   │   ├── login/
+│   │   │   └── page.jsx
+│   │   │
+│   │   ├── register/
+│   │   │   └── page.jsx
+│   │   │
+│   │   ├── loading.jsx
+│   │   ├── error.jsx
+│   │   ├── not-found.jsx
+│   │   ├── layout.jsx
+│   │   └── page.jsx
+│   │
+│   ├── components/
+│   │   ├── Navbar.jsx
+│   │   ├── Footer.jsx
+│   │   ├── Modal.jsx
+│   │   ├── Spinner.jsx
+│   │   ├── FacilityCard.jsx
+│   │   └── ProtectedRoute.jsx
+│   │
+│   ├── context/
+│   │   ├── AuthContext.js
+│   │   └── ThemeContext.js
+│   │
+│   ├── hooks/
+│   │
+│   ├── lib/
+│   │
+│   ├── services/
+│   │
+│   ├── styles/
+│   │
+│   ├── utils/
+│   │
+│   └── data/
+│
+├── .env.local
+├── .env.example
+├── .gitignore
+├── jsconfig.json
+├── next.config.js
+├── package.json
+├── package-lock.json
+├── postcss.config.js
+├── tailwind.config.js
+└── README.md
+```
+```
+
+---
+
+## Responsive Design
+
+This project is fully responsive and optimized for:
+
+- Mobile Devices
+- Tablets
+- Laptops
+- Desktop Devices
+
+---
+
+## Developer Information
+
+Name: Masud Rana
+
+GitHub:
+https://github.com/masudranamdra
+
+Email:
+masud.dev01@gmail.com
+
+---
+
+## License
+
+This project is created for educational and learning purposes only.
+
+
+Server :
+
+# SportNest - Sports Facility Booking Platform (Server)
+
+## Project Overview
+
+SportNest Server is the backend API server for the SportNest sports facility booking platform. It manages authentication, facilities, bookings, and database operations using Node.js, Express.js, and MongoDB.
+
+This project was developed to practice and demonstrate backend development concepts learned during coursework, including REST API creation, CRUD operations, authentication, database integration, middleware, and server deployment.
+
+---
+
+## Live Server URL
+
+Server Live Link:
+
+https://sportnest-mdra.onrender.com
+
+---
+
+## Main Features
+
+- REST API Development
+- User Authentication System
+- Google Authentication Support
+- Facility Management System
+- Booking Management System
+- CRUD Operations
+- MongoDB Database Integration
+- Protected API Routes
+- Middleware Implementation
+- Error Handling System
+- Environment Variable Security
+- CORS Configuration
+
+---
+
+## Technologies Used
+
+### Backend
+- Node.js
+- Express.js
+
+### Database
+- MongoDB
+
+### Authentication
+- Better Auth
+- Google OAuth
+
+### Deployment
+- Render
+
+---
+
+## NPM Packages Used
+
+| Package Name | Purpose |
+|--------------|---------|
+| express | Backend Framework |
+| mongodb | MongoDB Database Driver |
+| mongoose | MongoDB ODM |
+| cors | Cross-Origin Resource Sharing |
+| dotenv | Environment Variables |
+| cookie-parser | Cookie Handling |
+| nodemon | Development Server |
+| better-auth | Authentication System |
+
+---
+
+## Installation Process
+
+### Clone Repository
+
+```bash
+git clone https://github.com/masudranamdra/SportNest-Server.git
+```
+
+### Move to Project Folder
+
+```bash
+cd SportNest-Server
+```
+
+### Install Dependencies
+
+```bash
+npm install
+```
+
+### Run Development Server
+
+```bash
+npm run dev
+```
+
+---
+
+## Environment Variables
+
+Create a `.env` file and add the following variables:
+
+```env
+PORT=
+MONGODB_URI=
+CLIENT_URL=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+BETTER_AUTH_SECRET=
+BETTER_AUTH_URL=
+```
+
+---
+
+## API Endpoints
+
+### Authentication Routes
+
+```bash
+POST /api/auth/sign-in
+POST /api/auth/sign-up
+GET  /api/auth/get-session
+```
+
+### Facility Routes
+
+```bash
+GET    /api/facilities
+GET    /api/facilities/:id
+POST   /api/facilities
+PUT    /api/facilities/:id
+DELETE /api/facilities/:id
+```
+
+### Booking Routes
+
+```bash
+GET    /api/bookings
+POST   /api/bookings
+DELETE /api/bookings/:id
+```
+
+---
+
+## Project Structure
+
+```bash
+SportNest-Server/
+│
+├── config/
+│
+├── controllers/
+│
+├── middleware/
+│
+├── models/
+│
+├── routes/
+│
+├── utils/
+│
+├── services/
+│
+├── database/
+│
+├── .env
+├── .env.example
+├── .gitignore
+├── package.json
+├── package-lock.json
+├── server.js
+└── README.md
+```
+
+---
+
+## Security Features
+
+- Protected API Routes
+- Environment Variable Protection
+- Authentication Middleware
+- CORS Security Configuration
+- Cookie-Based Session Handling
+
+---
+
+## Developer Information
+
+Name: Masud Rana
+
+GitHub:
+https://github.com/masudranamdra
+
+Email:
+masud.dev01@gmail.com
+
+---
+
+## License
+
+This project is created for educational and learning purposes only.
+

@@ -15,12 +15,11 @@ export const ThemeProvider = ({ children }) => {
       setTheme(savedTheme);
       document.documentElement.classList.toggle('dark', savedTheme === 'dark');
     } else {
-      // Default to dark mode for the premium startup look!
+      // Default to dark mode for the premium sports-tech startup look!
       setTheme('dark');
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
     }
-    setMounted(true);
   }, []);
 
   const toggleTheme = () => {
@@ -29,11 +28,6 @@ export const ThemeProvider = ({ children }) => {
     localStorage.setItem('theme', newTheme);
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
   };
-
-  // Prevent hydration flicker/errors by holding off rendering children until mounted
-  if (!mounted) {
-    return <div className="min-h-screen bg-slate-900 text-white" aria-hidden="true" />;
-  }
 
   return (
     <ThemeContext.Provider value={{ theme, toggleTheme }}>
