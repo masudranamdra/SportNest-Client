@@ -123,12 +123,12 @@ export default function AddFacilityPage() {
               
               {/* Owner Email (Auto-filled read-only) */}
               <div className="space-y-1.5">
-                <label className="text-[10px] font-bold text-slate-500 uppercase tracking-widest block">Owner Contact Email</label>
+                <label className="text-[10px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest block">Owner Contact Email</label>
                 <input
                   type="email"
                   value={user?.email || ''}
                   readOnly
-                  className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-450 dark:text-slate-500 border border-slate-200 dark:border-slate-900 focus:outline-none font-bold text-xs uppercase tracking-wider select-none"
+                  className="w-full px-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-450 dark:text-slate-500 border border-slate-200 dark:border-slate-900 focus:outline-none font-bold text-xs tracking-wider select-none"
                 />
               </div>
 
@@ -144,7 +144,7 @@ export default function AddFacilityPage() {
                       type="text"
                       placeholder="Basudebpur Football Field"
                       {...register('name', { required: 'Facility name is required' })}
-                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-955 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
+                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
                     />
                   </div>
                   {errors.name && (
@@ -159,7 +159,7 @@ export default function AddFacilityPage() {
                     <Clock className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-455 dark:text-slate-500 pointer-events-none" />
                     <select
                       {...register('facility_type', { required: 'Sport category is required' })}
-                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-955 text-slate-805 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider appearance-none cursor-pointer"
+                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider appearance-none cursor-pointer"
                     >
                       {sportTypes.map((type) => (
                         <option key={type.value} value={type.value} className="bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200">
@@ -184,7 +184,7 @@ export default function AddFacilityPage() {
                       type="text"
                       placeholder="Basudebpur, Chirirbandar, Dinajpur"
                       {...register('location', { required: 'Location is required' })}
-                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-955 text-slate-805 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
+                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
                     />
                   </div>
                   {errors.location && (
@@ -201,7 +201,7 @@ export default function AddFacilityPage() {
                       type="url"
                       placeholder="https://images.unsplash.com/photo-..."
                       {...register('image', { required: 'Photo URL is required' })}
-                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-955 text-slate-805 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
+                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs tracking-wider"
                     />
                   </div>
                   {errors.image && (
@@ -227,7 +227,7 @@ export default function AddFacilityPage() {
                         required: 'Hourly rate is required',
                         min: { value: 1, message: 'Price must be a positive number greater than zero' }
                       })}
-                      className="w-full pl-9 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-955 text-slate-805 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-bold text-xs uppercase tracking-wider"
+                      className="w-full pl-9 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-bold text-xs uppercase tracking-wider"
                     />
                   </div>
                   {errors.price_per_hour && (
@@ -248,7 +248,7 @@ export default function AddFacilityPage() {
                         required: 'Capacity is required',
                         min: { value: 1, message: 'Capacity must be at least 1 player' }
                       })}
-                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-955 text-slate-805 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-bold text-xs uppercase tracking-wider"
+                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-bold text-xs uppercase tracking-wider"
                     />
                   </div>
                   {errors.capacity && (
@@ -276,7 +276,7 @@ export default function AddFacilityPage() {
                         className={`px-3 py-2.5 rounded-xl text-xs font-bold border transition-all active:scale-95 duration-200 ${
                           isChecked
                             ? 'bg-blue-500/10 border-blue-400/30 text-blue-650 dark:text-sky-400 shadow-sm'
-                            : 'bg-slate-50 hover:bg-slate-100 dark:bg-slate-955 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-900 hover:border-slate-300 dark:hover:border-slate-800'
+                            : 'bg-slate-50 hover:bg-slate-100 dark:bg-slate-950 dark:hover:bg-slate-900 text-slate-600 dark:text-slate-400 border-slate-200 dark:border-slate-900 hover:border-slate-300 dark:hover:border-slate-800'
                         }`}
                       >
                         {slot}
@@ -295,7 +295,7 @@ export default function AddFacilityPage() {
                     rows="4"
                     placeholder="Provide a detailed description about the field size, turf quality, locker rooms, floodlights availability, and parking spaces..."
                     {...register('description', { required: 'Description is required' })}
-                    className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-955 text-slate-805 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider resize-none"
+                    className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider resize-none"
                   />
                 </div>
                 {errors.description && (
@@ -315,7 +315,7 @@ export default function AddFacilityPage() {
               <button
                 type="submit"
                 disabled={submitting}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-4 rounded-2xl shadow-sm active:scale-95 transition-all text-xs uppercase tracking-widest flex items-center justify-center pt-2 animate-none"
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white font-extrabold py-4 rounded-2xl shadow-sm active:scale-95 transition-all text-xs uppercase tracking-widest flex items-center justify-center animate-none"
               >
                 {submitting ? (
                   <Spinner size="small" />

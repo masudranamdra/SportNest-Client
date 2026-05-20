@@ -170,25 +170,25 @@ export default function FacilityDetailsPage() {
             </motion.div>
 
             {/* Core Info Details Card */}
-            <div className="bg-slate-900/60 p-8 rounded-3xl border border-slate-900 shadow-xl space-y-6 backdrop-blur-md">
+            <div className="bg-white dark:bg-slate-900/60 p-8 rounded-3xl border border-slate-200 dark:border-slate-850/60 shadow-sm dark:shadow-xl space-y-6 backdrop-blur-md">
               
               <div className="space-y-3">
-                <h1 className="text-2xl sm:text-4xl font-extrabold text-white leading-tight">
+                <h1 className="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
                   {facility.name}
                 </h1>
                 
                 {/* Location row */}
-                <div className="flex items-center text-slate-400 text-xs sm:text-sm font-semibold">
-                  <MapPin className="h-4.5 w-4.5 mr-2 text-slate-500 flex-shrink-0" />
+                <div className="flex items-center text-slate-600 dark:text-slate-400 text-xs sm:text-sm font-semibold">
+                  <MapPin className="h-4.5 w-4.5 mr-2 text-slate-400 dark:text-slate-500 flex-shrink-0" />
                   <span>{facility.location}</span>
                 </div>
               </div>
 
               {/* Specs Icons Row */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 p-4 bg-slate-950/40 rounded-2xl border border-slate-950">
+              <div className="grid grid-cols-2 bg-white dark:bg-slate-900/40 sm:grid-cols-3 gap-4 p-4 bg-slate-950/40 rounded-2xl border border-slate-550">
                 <div className="space-y-1">
-                  <span className="text-[9px] text-slate-550 uppercase font-bold tracking-wider block">Price rate</span>
-                  <span className="text-base font-bold text-slate-200 flex items-center">
+                  <span className="text-[9px] text-slate-550 dark:text-slate-400 uppercase font-bold tracking-wider block">Price rate</span>
+                  <span className="text-base font-bold text-slate-800 dark:text-slate-200 flex items-center">
                     <span className="text-xs font-bold text-cyan-400 mr-0.5">$</span>
                     {facility.price_per_hour}
                     <span className="text-[10px] font-semibold text-slate-500 ml-1">/hr</span>
@@ -196,15 +196,15 @@ export default function FacilityDetailsPage() {
                 </div>
                 
                 <div className="space-y-1">
-                  <span className="text-[9px] text-slate-550 uppercase font-bold tracking-wider block">Capacity</span>
-                  <span className="text-base font-bold text-slate-250 flex items-center">
-                    <Users className="h-4 w-4 mr-2 text-slate-500 flex-shrink-0" />
+                  <span className="text-[9px] text-slate-550 dark:text-slate-400 uppercase font-bold tracking-wider block">Capacity</span>
+                  <span className="text-base font-bold text-slate-250 dark:text-slate-250 flex items-center">
+                    <Users className="h-4 w-4 mr-2 text-slate-400 dark:text-slate-500 flex-shrink-0" />
                     {facility.capacity} Players
                   </span>
                 </div>
 
                 <div className="space-y-1 col-span-2 sm:col-span-1">
-                  <span className="text-[9px] text-slate-550 uppercase font-bold tracking-wider block">Total Bookings</span>
+                  <span className="text-[9px] text-slate-550 dark:text-slate-400 uppercase font-bold tracking-wider block">Total Bookings</span>
                   <span className="text-base font-bold text-slate-250 flex items-center">
                     <CalendarCheck className="h-4 w-4 mr-2 text-slate-500 flex-shrink-0" />
                     {facility.booking_count || 0} times
@@ -233,7 +233,7 @@ export default function FacilityDetailsPage() {
                   {facility.available_slots?.map((slot) => (
                     <span 
                       key={slot} 
-                      className="px-3.5 py-2 rounded-xl text-xs font-bold bg-slate-950 border border-slate-900 text-slate-350"
+                      className="px-3.5 py-2  rounded-xl text-xs font-bold bg-slate-50 text-slate-900 border border-slate-500 text-slate-350"
                     >
                       {slot}
                     </span>
@@ -246,11 +246,11 @@ export default function FacilityDetailsPage() {
 
           {/* RIGHT COLUMN - Secure Booking Form Card */}
           <div className="lg:col-span-4">
-            <div className="bg-slate-900/60 p-6 rounded-3xl border border-slate-900 shadow-xl space-y-6 sticky top-24 backdrop-blur-md">
+            <div className="dark:bg-slate-900/60 bg-white p-6 rounded-3xl border border-slate-200 shadow-sm space-y-6 sticky top-24 backdrop-blur-md">
               
-              <div className="border-b border-slate-800 pb-4">
-                <h2 className="text-lg font-bold text-white tracking-wide">Secure Match Slot</h2>
-                <p className="text-xs text-slate-500 mt-1">Book turf and checkout in seconds.</p>
+              <div className="border-b border-slate-200 pb-4">
+                <h2 className="text-lg  font-bold text-slate-900 dark:text-white tracking-wide">Secure Match Slot</h2>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Book turf and checkout in seconds.</p>
               </div>
 
               <form onSubmit={handleBookingSubmit} className="space-y-5">
@@ -262,7 +262,7 @@ export default function FacilityDetailsPage() {
                     type="text"
                     value={facility.name}
                     readOnly
-                    className="w-full px-4 py-3 rounded-2xl bg-slate-950 text-slate-400 border border-slate-900 focus:outline-none font-bold text-xs uppercase tracking-wider select-none"
+                    className="w-full px-4 py-3 rounded-2xl dark:bg-slate-950 text-slate-400 border border-slate-300 focus:outline-none font-bold text-xs uppercase tracking-wider select-none"
                   />
                 </div>
 
@@ -277,7 +277,7 @@ export default function FacilityDetailsPage() {
                       value={bookingDate}
                       onChange={(e) => setBookingDate(e.target.value)}
                       required
-                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-950 text-slate-200 border border-slate-900 focus:outline-none focus:border-cyan-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
+                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl dark:bg-slate-950 text-slate-500 border border-slate-300 focus:outline-none focus:border-cyan-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
                     />
                   </div>
                 </div>
@@ -291,10 +291,10 @@ export default function FacilityDetailsPage() {
                       value={selectedSlot}
                       onChange={(e) => setSelectedSlot(e.target.value)}
                       required
-                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-950 text-slate-200 border border-slate-900 focus:outline-none focus:border-cyan-500/40 transition-all font-semibold text-xs uppercase tracking-wider appearance-none cursor-pointer"
+                      className="w-full pl-12 pr-4 py-3.5 rounded-2xl dark:bg-slate-950 text-slate-500 border border-slate-300 focus:outline-none focus:border-cyan-500/40 transition-all font-semibold text-xs uppercase tracking-wider appearance-none cursor-pointer"
                     >
                       {facility.available_slots?.map((slot) => (
-                        <option key={slot} value={slot} className="bg-slate-950 text-slate-200">
+                        <option key={slot} value={slot} className="dark:bg-slate-950 rounded-2xl text-slate-500">
                           {slot}
                         </option>
                       ))}
@@ -311,22 +311,25 @@ export default function FacilityDetailsPage() {
                     value={hours}
                     onChange={(e) => setHours(Math.max(1, parseInt(e.target.value) || 1))}
                     required
-                    className="w-full px-4 py-3.5 rounded-2xl bg-slate-950 text-slate-200 border border-slate-900 focus:outline-none focus:border-cyan-500/40 transition-all font-bold text-xs uppercase tracking-wider"
+                    className="w-full px-4 py-3.5 rounded-2xl dark:bg-slate-950 text-slate-500 border border-slate-300 focus:outline-none focus:border-cyan-500/40 transition-all font-bold text-xs uppercase tracking-wider"
                   />
                 </div>
 
                 {/* Live Cost calculation row */}
-                <div className="p-4.5 bg-slate-955 rounded-2xl border border-slate-900/60 flex justify-between items-center">
-                  <div className="space-y-0.5">
-                    <span className="text-[9px] text-slate-500 uppercase font-bold tracking-wider block">Total Checkout</span>
-                    <span className="text-[10px] text-slate-500 font-semibold block">({hours} hours × ${facility.price_per_hour}/hr)</span>
+                
+                <div className="flex items-center justify-between px-4 py-3 bg-slate-950/10 rounded-xl border border-slate-550">
+                  <div className="flex items-center text-slate-500 text-[10px] uppercase tracking-widest font-bold">
+                    <Zap className="h-4 w-4 mr-2" />
+                    Total Price /hr
                   </div>
-                  <span className="text-2xl font-extrabold text-white flex items-center leading-none">
-                    <span className="text-lg font-bold text-cyan-400 mr-0.5">$</span>
+                  <div className="text-sm font-bold text-slate-900 dark:text-slate-200 flex items-center">
+                    <span className="text-xs font-bold text-cyan-400 mr-0.5">$</span>
                     {totalPrice}
-                  </span>
+                    <span className="text-[10px] font-semibold text-slate-500 ml-1"></span>
+                  </div>
                 </div>
-
+                
+              
                 {/* Submit trigger button */}
                 <button
                   type="submit"
@@ -344,8 +347,8 @@ export default function FacilityDetailsPage() {
               </form>
 
               {/* Safety notice banner */}
-              <div className="flex items-start space-x-2.5 p-3.5 bg-cyan-950/20 border border-cyan-900/40 rounded-2xl">
-                <Info className="h-4.5 w-4.5 text-cyan-400 flex-shrink-0 mt-0.5" />
+              <div className="flex items-start space-x-2.5 p-3.5 border border-yellow-400/40 rounded-2xl">
+                <Info className="h-4.5 w-4.5 text-yellow-400 flex-shrink-0 mt-0.5" />
                 <p className="text-[10px] text-slate-400 leading-relaxed font-semibold">
                   Free cancellation from your bookings list before the slot starts. Refund transfers are processed dynamically.
                 </p>

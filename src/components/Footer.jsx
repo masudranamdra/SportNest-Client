@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Dribbble, Mail, Phone, MapPin, Facebook, Instagram, Github, Youtube, Linkedin } from 'lucide-react';
+import { Dribbble, Mail, Phone, MapPin, Facebook, Instagram, Github, Youtube, Linkedin, X } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -59,20 +59,21 @@ const Footer = () => {
                 <Github className="h-4.5 w-4.5" />
               </a>
               <a 
-                href="#" 
+                href="https://www.youtube.com/@Masudranamdra" 
+                target="_blank"
+                rel="noopener noreferrer"
                 className="p-2 rounded-xl bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-800/40 text-slate-500 dark:text-slate-450 hover:text-blue-600 dark:hover:text-sky-400 hover:border-blue-500/25 dark:hover:border-sky-500/20 transition-all duration-300" 
                 aria-label="X (formerly Twitter)"
               >
-                <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-                </svg>
+                <Youtube className="h-4.5 w-4.5" />
+                
               </a>
             </div>
           </div>
 
           {/* Column 2 - Quick Links */}
           <div className="space-y-5">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-350">Quick Links</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-300">Quick Links</h3>
             <ul className="space-y-2.5 text-xs font-semibold">
               <li>
                 <Link href="/" className="text-slate-650 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
@@ -94,7 +95,7 @@ const Footer = () => {
 
           {/* Column 3 - Popular Sports */}
           <div className="space-y-5">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-350">Sports Fields</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-300">Sports Fields</h3>
             <ul className="space-y-2.5 text-xs font-semibold">
               <li>
                 <Link href="/facilities?sport_type=football" className="text-slate-650 dark:text-slate-400 hover:text-blue-600 dark:hover:text-sky-400 transition-colors duration-200">
@@ -121,7 +122,7 @@ const Footer = () => {
 
           {/* Column 4 - Contact Info */}
           <div className="space-y-5">
-            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-350">Contact Us</h3>
+            <h3 className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-slate-300">Contact Us</h3>
             <ul className="space-y-3.5 text-xs text-slate-600 dark:text-slate-400 font-semibold">
               <li className="flex items-start space-x-3">
                 <MapPin className="h-4.5 w-4.5 text-blue-600 dark:text-sky-400 flex-shrink-0 mt-0.5" />

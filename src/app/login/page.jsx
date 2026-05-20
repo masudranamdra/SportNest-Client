@@ -95,7 +95,7 @@ export default function LoginPage() {
                     message: 'Please enter a valid email address'
                   }
                 })}
-                className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-55 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs uppercase tracking-wider"
+                className="w-full pl-12 pr-4 py-3.5 rounded-2xl bg-slate-55 dark:bg-slate-950 text-slate-800 dark:text-slate-200 border border-slate-200 dark:border-slate-900 focus:outline-none focus:border-blue-500/50 dark:focus:border-blue-500/40 transition-all font-semibold text-xs tracking-wider"
               />
             </div>
             {errors.email && (
