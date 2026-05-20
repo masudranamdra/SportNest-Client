@@ -61,7 +61,7 @@ const Navbar = () => {
                 <Dribbble className="h-6 w-6 animate-pulse" />
               </div>
               <span className="bg-gradient-to-r from-primary-600 to-emerald-500 dark:from-primary-400 dark:to-emerald-400 bg-clip-text text-transparent">
-                SportNest
+                <span className="text-black">Sport</span>Nest
               </span>
             </Link>
           </div>
@@ -72,7 +72,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                   isActive(link.path)
                     ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/50 dark:text-slate-350 dark:hover:text-white dark:hover:bg-slate-800/40'
@@ -87,7 +87,7 @@ const Navbar = () => {
               <Link
                 key={link.path}
                 href={link.path}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
+                className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 ${
                   isActive(link.path)
                     ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400'
                     : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100/50 dark:text-slate-350 dark:hover:text-white dark:hover:bg-slate-800/40'

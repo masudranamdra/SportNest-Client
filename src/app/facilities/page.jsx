@@ -107,7 +107,7 @@ export default function AllFacilitiesPage() {
         </div>
 
         {/* Filters Controls Panel */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl border border-slate-200/50 dark:border-slate-800/40 shadow-sm space-y-6">
+        <div className="bg-white dark:bg-slate-900 p-6 rounded-xl border border-slate-200/50 dark:border-slate-800/40 shadow-sm space-y-6">
           
           {/* Search form and Reset button */}
           <form onSubmit={handleSearchSubmit} className="flex flex-col sm:flex-row gap-4">
@@ -118,12 +118,12 @@ export default function AllFacilitiesPage() {
                 placeholder="Search by facility name..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all font-medium text-sm"
+                className="w-full pl-12 pr-4 py-3 rounded-xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all font-medium text-sm"
               />
             </div>
             <button
               type="submit"
-              className="bg-primary-500 hover:bg-primary-600 text-white font-bold px-6 py-3 rounded-2xl shadow-md shadow-primary-500/10 hover:shadow-primary-500/20 active:scale-95 transition-all text-sm flex items-center justify-center"
+              className="bg-primary-500 hover:bg-primary-600 text-white font-bold px-6 py-3 rounded-md shadow-md shadow-primary-500/10 hover:shadow-primary-500/20 active:scale-95 transition-all text-sm flex items-center justify-center"
             >
               Search
             </button>
@@ -131,7 +131,7 @@ export default function AllFacilitiesPage() {
               <button
                 type="button"
                 onClick={handleResetFilters}
-                className="border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-350 px-5 py-3 rounded-2xl transition-all text-sm font-semibold flex items-center justify-center"
+                className="border border-slate-200 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-350 px-5 py-3 rounded-xl transition-all text-sm font-semibold flex items-center justify-center"
               >
                 <RotateCcw className="h-4 w-4 mr-2" />
                 Clear Filters
@@ -153,7 +153,7 @@ export default function AllFacilitiesPage() {
                   <button
                     key={sport.label}
                     onClick={() => handleSportSelect(sport.value)}
-                    className={`px-4 py-2 rounded-xl text-xs font-bold border transition-all ${
+                    className={`px-4 py-2 rounded-md text-xs font-bold border transition-all ${
                       isSelected
                         ? 'bg-primary-500 border-primary-500 text-white shadow-md shadow-primary-500/15'
                         : 'bg-slate-50 dark:bg-slate-950 hover:bg-slate-100 dark:hover:bg-slate-850 text-slate-650 dark:text-slate-300 border-slate-200 dark:border-slate-800/80'

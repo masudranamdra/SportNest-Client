@@ -108,7 +108,7 @@ export default function AddFacilityPage() {
           </div>
 
           {/* Creation Form Box */}
-          <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl border border-slate-200/50 dark:border-slate-800/40 shadow-xl">
+          <div className="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200/50 dark:border-slate-800/40 shadow-xl">
             
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
               
@@ -133,7 +133,7 @@ export default function AddFacilityPage() {
                     <PlusCircle className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                     <input
                       type="text"
-                      placeholder="e.g. Arena 7 Turf - Dhanmondi"
+                      placeholder="Basudebpur Football Field"
                       {...register('name', { required: 'Facility name is required' })}
                       className="w-full pl-12 pr-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all font-medium text-sm"
                     />
@@ -173,7 +173,7 @@ export default function AddFacilityPage() {
                     <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                     <input
                       type="text"
-                      placeholder="e.g. Block D, Dhanmondi, Dhaka"
+                      placeholder="Basudebpur, Chirirbandar, Dinajpur"
                       {...register('location', { required: 'Location is required' })}
                       className="w-full pl-12 pr-4 py-3 rounded-2xl bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-white border border-slate-200 dark:border-slate-800 focus:outline-none focus:border-primary-500 transition-all font-medium text-sm"
                     />

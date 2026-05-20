@@ -51,7 +51,7 @@ export default function HomePage() {
     <div className="flex flex-col min-h-screen">
       
       {/* 1. HERO SECTION */}
-      <section className="relative overflow-hidden bg-[url('https://i.ibb.co.com/fVBF30bW/Chat-GPT-Image-May-19-2026-07-59-36-AM.png')] bg-cover bg-center h-[750px] text-white py-24 sm:py-32">
+      <section className="relative overflow-hidden bg-[url('https://i.ibb.co.com/fVBF30bW/Chat-GPT-Image-May-19-2026-07-59-36-AM.png')] bg-cover bg-center h-[750px] text-white py-24 sm:py-32 transition-colors duration-200">
         {/* Abstract design elements */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary-950/40 via-slate-900 to-slate-950 opacity-90" />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary-500/10 blur-[120px] rounded-full" />
@@ -87,7 +87,7 @@ export default function HomePage() {
           </div>
 
           {/* Quick Stats banner */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 max-w-4xl mx-auto">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:pt-8 sm:px-8 max-w-4xl mx-auto">
             <div>
               <span className="text-3xl font-extrabold text-white block">15+</span>
               <span className="text-xs text-slate-300 uppercase tracking-wider font-bold">Sports Arenas</span>
@@ -246,7 +246,7 @@ export default function HomePage() {
       </section>
 
       {/* 5. CTA SECTION */}
-      <section className="bg-gradient-to-r from-sky-700 to-green-600 dark:from-sky-950 dark:to-emerald-950 py-20 transition-all duration-300">
+      <section className="bg-gradient-to-r from-black to-black dark:from-sky-950 dark:to-emerald-950 py-20 transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
           <h2 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-tight">
             Ready to Dominate the Pitch?

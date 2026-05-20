@@ -205,7 +205,7 @@ export default function FacilityDetailsPage() {
                   <BookOpen className="h-5 w-5 mr-2 text-slate-400" />
                   Facility Description
                 </h3>
-                <p className="text-sm text-slate-600 dark:text-slate-350 leading-relaxed font-medium">
+                <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed font-medium">
                   {facility.description}
                 </p>
               </div>
@@ -220,7 +220,7 @@ export default function FacilityDetailsPage() {
                   {facility.available_slots?.map((slot) => (
                     <span 
                       key={slot} 
-                      className="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-655 dark:text-slate-300"
+                      className="px-3.5 py-1.5 rounded-md text-xs font-bold bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800 text-slate-655 dark:text-slate-300"
                     >
                       {slot}
                     </span>
@@ -257,7 +257,7 @@ export default function FacilityDetailsPage() {
                 <div className="space-y-1">
                   <label className="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider block">Booking Date</label>
                   <div className="relative">
-                    <Calendar className="absolute left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
+                    <Calendar className="absolute Dark:text-white left-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-400" />
                     <input
                       type="date"
                       min={todayStr} // prevents historical bookings
@@ -318,7 +318,9 @@ export default function FacilityDetailsPage() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="w-full bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500/60 text-white font-extrabold py-4 rounded-xl shadow-lg shadow-primary-500/10 hover:shadow-primary-500/20 active:scale-95 transition-all text-sm flex items-center justify-center"
+                  className="w-full bg-primary-500 hover:bg-primary-600 disabled:bg-primary-500/60 text-white font-extrabold py-4 rounded-xl shadow-md shadow-primary-700/10 hover:shadow-primary-500/20 active:scale-95 transition-all text-sm flex items-center justify-center
+                  dark:bg-blue-500/20 dark:hover:bg-blue-500/40 dark:shadow-blue-500/10 dark:hover:shadow-blue-500/20
+                  "
                 >
                   {submitting ? (
                     <Spinner size="small" />
